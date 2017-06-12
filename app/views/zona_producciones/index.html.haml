@@ -1,0 +1,26 @@
+%h2 Zonas de producción
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Localidad
+      %th Municipio
+      %th Acciones
+  %tbody
+    - @zona_producciones.each do |zona_produccion|
+      %tr
+        %td= zona_produccion.localidad
+        %td= zona_produccion.municipio
+        %td
+          .btn-group
+            = link_to 'Mostrar', zona_produccion, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_zona_produccion_path(zona_produccion), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', zona_produccion, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_zona_produccion_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nueva Zona de producción"

@@ -1,0 +1,10 @@
+= simple_form_for(@region) do |f|
+  = f.error_notification
+
+  = f.input :nombre
+  = f.association :estado
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Región'
+    = link_to regiones_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

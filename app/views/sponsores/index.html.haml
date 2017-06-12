@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%h2 Sponsores
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Address
+      %th Email
+      %th Web page
+      %th Destacado
+      %th Language
+      %th Acciones
+  %tbody
+    - @sponsores.each do |sponsor|
+      %tr
+        %td= sponsor.name
+        %td= sponsor.address
+        %td= sponsor.email
+        %td= sponsor.web_page
+        %td= sponsor.outstanding ? "si" : "no"
+        %td= sponsor.get_language
+        %td
+          .btn-group
+            = link_to 'Mostrar', sponsor, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_sponsor_path(sponsor), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', sponsor, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_sponsor_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Sponsor"

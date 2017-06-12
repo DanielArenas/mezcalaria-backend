@@ -1,0 +1,10 @@
+= simple_form_for(@zona_produccion) do |f|
+  = f.error_notification
+
+  = f.input :localidad
+  = f.association :municipio
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Zona de producción'
+    = link_to zona_producciones_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

@@ -1,0 +1,28 @@
+%h2 Municipios
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Estado
+      %th Region
+      %th Acciones
+  %tbody
+    - @municipios.each do |municipio|
+      %tr
+        %td= municipio.nombre
+        %td= municipio.estado
+        %td= municipio.region
+        %td
+          .btn-group
+            = link_to 'Mostrar', municipio, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_municipio_path(municipio), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', municipio, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_municipio_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Municipio"

@@ -1,0 +1,6 @@
+development:
+  token: AAA
+test:
+  token: AAA
+production:
+  token: AAA

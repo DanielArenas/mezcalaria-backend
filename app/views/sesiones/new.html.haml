@@ -1,0 +1,7 @@
+= form_tag sesiones_path, id: 'form-signin' do
+  %h2 Inicio de sesión
+
+  = text_field_tag :email, params[:email], autofocus: true, placeholder: 'Email', class: 'form-control'
+  = password_field_tag :password, params[:password], placeholder: 'Contraseña', class: 'form-control'
+  %hr
+  = submit_tag 'Ingresar', class: 'btn btn-lg btn-primary btn-block'

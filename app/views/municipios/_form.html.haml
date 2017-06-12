@@ -1,0 +1,11 @@
+= simple_form_for(@municipio) do |f|
+  = f.error_notification
+
+  = f.input :nombre
+  = f.association :estado
+  = f.association :region
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Municipio'
+    = link_to municipios_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

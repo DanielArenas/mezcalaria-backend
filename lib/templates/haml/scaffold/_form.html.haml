@@ -1,0 +1,11 @@
+= simple_form_for(@<%= singular_table_name %>) do |f|
+  = f.error_notification
+
+<%- attributes.each do |attribute| -%>
+  = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+<%- end -%>
+
+  .form-actions.pull-right
+    = f.button :submit, '<%= "Guardar #{ singular_table_name.humanize }" %>'
+    = link_to <%= plural_table_name %>_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

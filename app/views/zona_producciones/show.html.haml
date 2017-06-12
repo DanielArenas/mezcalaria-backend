@@ -1,0 +1,26 @@
+%h2 Detalle de Zona de producción
+
+%hr
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Zona de producción
+  .panel-body
+    .row
+      .col-md-4
+        %b Localidad
+      .col-md-8
+        = @zona_produccion.localidad
+    %hr
+    .row
+      .col-md-4
+        %b Municipio
+      .col-md-8
+        = @zona_produccion.municipio
+
+.pull-right
+  = link_to edit_zona_produccion_path(@zona_produccion), class: 'btn btn-primary' do
+    = icon 'pencil', 'Editar'
+
+  = link_to zona_producciones_path, class: 'btn btn-default' do
+    = icon 'arrow-left', 'Regresar a listado'

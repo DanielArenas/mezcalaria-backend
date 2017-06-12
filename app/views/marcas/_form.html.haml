@@ -1,0 +1,12 @@
+= simple_form_for(@marca) do |f|
+  = f.error_notification
+
+  = f.input :nombre
+  = f.input :logotipo
+  = f.input :direccion
+  = f.input :correo
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Marca'
+    = link_to marcas_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

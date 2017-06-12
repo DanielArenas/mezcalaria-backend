@@ -1,0 +1,9 @@
+= simple_form_for(@tipo_maguey) do |f|
+  = f.error_notification
+
+  = f.input :nombre
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Tipo de maguey'
+    = link_to tipo_magueyes_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

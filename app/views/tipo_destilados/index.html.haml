@@ -1,0 +1,24 @@
+%h2 Tipos de destilado
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Acciones
+  %tbody
+    - @tipo_destilados.each do |tipo_destilado|
+      %tr
+        %td= tipo_destilado.nombre
+        %td
+          .btn-group
+            = link_to 'Mostrar', tipo_destilado, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_tipo_destilado_path(tipo_destilado), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', tipo_destilado, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_tipo_destilado_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Tipo de destilado"

@@ -1,0 +1,13 @@
+= simple_form_for(@maguey) do |f|
+  = f.error_notification
+
+  = f.input :title
+  = f.input :sub_title
+  = f.input :description
+  = f.input :image
+  = f.select :language, [ ['Español', 1], ['English', 2] ]
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Maguey'
+    = link_to magueyes_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

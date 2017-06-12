@@ -1,0 +1,40 @@
+%h2 Mezcales
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Tipo
+      %th Maguey
+      %th Destilado
+      %th Marca
+      %th Precio promedio
+      %th Maestro mezcalero
+      %th Certificado
+      %th Acciones
+      %th Language
+
+  - @mezcales.each do |mezcal|
+    %tr
+      %td= mezcal.nombre
+      %td= mezcal.tipo_mezcal
+      %td= mezcal.tipo_maguey
+      %td= mezcal.tipo_destilado
+      %td= mezcal.marca
+      %td= number_to_currency mezcal.precio_promedio
+      %td= mezcal.maestro_mezcalero
+      %td= boolean_label mezcal.certificado
+      %td= mezcal.get_language
+      %td
+        .btn-group
+          = link_to 'Mostrar', mezcal, class: 'btn btn-sm btn-default'
+          = link_to 'Editar', edit_mezcal_path(mezcal), class: 'btn btn-sm btn-primary'
+          = link_to 'Eliminar', mezcal, :method => :delete, :data => { :confirm => '¿Estás seguro?' }, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_mezcal_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', 'Nuevo mezcal'

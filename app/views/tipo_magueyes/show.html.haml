@@ -1,0 +1,20 @@
+%h2 Detalle de Tipo de maguey
+
+%hr
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Tipo maguey
+  .panel-body
+    .row
+      .col-md-4
+        %b Nombre
+      .col-md-8
+        = @tipo_maguey.nombre
+
+.pull-right
+  = link_to edit_tipo_maguey_path(@tipo_maguey), class: 'btn btn-primary' do
+    = icon 'pencil', 'Editar'
+
+  = link_to tipo_magueyes_path, class: 'btn btn-default' do
+    = icon 'arrow-left', 'Regresar a listado'

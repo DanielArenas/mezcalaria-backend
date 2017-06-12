@@ -1,0 +1,30 @@
+%h2 Marcas
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Logotipo
+      %th Direccion
+      %th Correo
+      %th Acciones
+  %tbody
+    - @marcas.each do |marca|
+      %tr
+        %td= marca.nombre
+        %td= image_tag(marca.logotipo.thumb.url)
+        %td= marca.direccion
+        %td= marca.correo
+        %td
+          .btn-group
+            = link_to 'Mostrar', marca, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_marca_path(marca), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', marca, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_marca_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nueva Marca"

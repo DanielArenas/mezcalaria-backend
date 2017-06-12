@@ -1,0 +1,2 @@
+module TipoDestiladosHelper
+end

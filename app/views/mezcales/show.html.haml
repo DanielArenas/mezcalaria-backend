@@ -1,0 +1,85 @@
+%h2 Ficha técnica
+
+%hr
+
+.row
+  .col-md-6
+    = image_tag @mezcal.fotografia, class: 'img-thumbnail'
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Mezcal
+      .panel-body
+        .row
+          .col-md-4
+            %b Nombre
+          .col-md-8
+            = @mezcal.nombre
+        %hr
+        .row
+          .col-md-4
+            %b Tipo de mezcal
+          .col-md-8
+            = @mezcal.tipo_mezcal
+        %hr
+        .row
+          .col-md-4
+            %b Tipo de maguey
+          .col-md-8
+            = @mezcal.tipo_maguey
+        %hr
+        .row
+          .col-md-4
+            %b Tipo de destilado
+          .col-md-8
+            = @mezcal.tipo_destilado
+        %hr
+        .row
+          .col-md-4
+            %b Marca:
+          .col-md-8
+            = @mezcal.marca
+        %hr
+        .row
+          .col-md-4
+            %b Precio promedio
+          .col-md-8
+            = @mezcal.precio_promedio
+        %hr
+        .row
+          .col-md-4
+            %b Zona de producción
+          .col-md-8
+            = @mezcal.zona_produccion
+        %hr
+        .row
+          .col-md-4
+            %b Mastro mezcalero
+          .col-md-8
+            = @mezcal.maestro_mezcalero
+        %hr
+        .row
+          .col-md-4
+            %b ¿Está certificado?
+          .col-md-8
+            = boolean_label @mezcal.certificado
+        %hr
+        .row
+          .col-md-4
+            %b Lugares de venta
+          .col-md-8
+            = @mezcal.lugares_venta
+        %hr
+        .row
+          .col-md-4
+            %b Comentarios
+          .col-md-8
+            = @mezcal.comentario_maestro
+
+    .pull-right
+      = link_to edit_mezcal_path(@mezcal), class: 'btn btn-primary' do
+        = icon 'pencil', 'Editar'
+
+      = link_to mezcales_path, class: 'btn btn-default' do
+        = icon 'arrow-left', 'Regresar a listado'

@@ -1,0 +1,2 @@
+module MagueyesHelper
+end

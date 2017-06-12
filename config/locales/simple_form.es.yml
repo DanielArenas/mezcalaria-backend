@@ -1,0 +1,30 @@
+es-MX:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Por favor, revise los siguientes problemas:"
+    labels:
+      defaults:
+        name: 'Nombre'
+        address: 'Dirección'
+        web_page: 'Pagina web'
+        outstanding: 'destacado'
+        description: 'Descripción'
+        certificado: '¿Se encuentra certificado?'
+        comentario_maestro: 'Comentario del maestro mezcalero'
+        descripcion: 'Descripción'
+        email: 'Correo Electrónico'
+        fotografia: 'Fotografía'
+        lugares_venta: 'Lugares de venta'
+        telefono: 'Teléfono'
+        tipo_mezcal: 'Tipo de mezcal'
+        tipo_maguey: 'Tipo de maguey'
+        tipo_destilado: 'Tipo de destilado'
+        zona_produccion: 'Zona de producción'

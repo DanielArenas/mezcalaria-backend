@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%h2 Events
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Lugar
+      %th Fecha
+      %th Baner
+      %th Es gratis
+      %th Language
+      %th Acciones
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= event.name
+        %td= event.place
+        %td= event.date_event
+        %td= image_tag(event.baner.thumb.url)
+        %td= event.is_free ? "si" : "no"
+        %td= event.get_language
+        %td
+          .btn-group
+            = link_to 'Mostrar', event, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_event_path(event), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', event, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_event_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Event"

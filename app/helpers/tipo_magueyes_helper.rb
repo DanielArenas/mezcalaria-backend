@@ -1,0 +1,2 @@
+module TipoMagueyesHelper
+end

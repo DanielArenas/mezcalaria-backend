@@ -1,0 +1,24 @@
+%h2 Tipos de mezcal
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Nombre
+      %th Acciones
+  %tbody
+    - @tipo_mezcales.each do |tipo_mezcal|
+      %tr
+        %td= tipo_mezcal.nombre
+        %td
+          .btn-group
+            = link_to 'Mostrar', tipo_mezcal, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_tipo_mezcal_path(tipo_mezcal), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', tipo_mezcal, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_tipo_mezcal_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Tipo de mezcal"

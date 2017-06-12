@@ -1,0 +1,27 @@
+= simple_form_for(@mezcal) do |f|
+  = f.error_notification
+
+  .row
+    .col-md-6
+      = f.input :nombre
+      = f.association :tipo_mezcal
+      = f.association :tipo_maguey
+      = f.association :tipo_destilado
+      = f.association :marca
+      = f.input :precio_promedio
+      = f.input :agave_distillation
+      = f.input :history_mezcal
+      = f.select :language, [ ['Español', 1], ['English', 2] ]
+
+    .col-md-6
+      = f.association :zona_produccion
+      = f.input :maestro_mezcalero
+      = f.input :lugares_venta
+      = f.input :comentario_maestro
+      = f.input :certificado
+      = f.input :fotografia
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar mezcal'
+    = link_to mezcales_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'

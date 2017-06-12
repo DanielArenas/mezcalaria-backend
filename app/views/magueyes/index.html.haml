@@ -1,0 +1,32 @@
+%p#notice= notice
+
+%h2 Magueyes
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Sub title
+      %th Image
+      %th Language
+      %th Acciones
+  %tbody
+    - @magueyes.each do |maguey|
+      %tr
+        %td= maguey.title
+        %td= maguey.sub_title
+        %td= image_tag(maguey.image.thumb.url)
+        %td= maguey.get_language
+        %td
+          .btn-group
+            = link_to 'Mostrar', maguey, class: 'btn btn-sm btn-default'
+            = link_to 'Editar', edit_maguey_path(maguey), class: 'btn btn-sm btn-primary'
+            = link_to 'Eliminar', maguey, method: :delete, data: { confirm: '¿Estás seguro?'}, class: 'btn btn-sm btn-danger'
+
+%br
+
+.pull-right
+  = link_to new_maguey_path, class: 'btn btn-primary btn-lg' do
+    = icon 'plus', "Nuevo Maguey"

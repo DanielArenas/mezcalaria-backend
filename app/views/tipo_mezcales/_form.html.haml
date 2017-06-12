@@ -1,0 +1,9 @@
+= simple_form_for(@tipo_mezcal) do |f|
+  = f.error_notification
+
+  = f.input :nombre
+
+  .form-actions.pull-right
+    = f.button :submit, 'Guardar Tipo de mezcal'
+    = link_to tipo_mezcales_path, class: 'btn btn-danger' do
+      = icon 'times', 'Cancelar'
