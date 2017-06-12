@@ -9,7 +9,7 @@
 rol = Rol.create! nombre: 'admin'
 Rol.create! nombre: 'viewer'
 
-Usuario.create! email: 'admin@mail.com', rol: rol, password: 'abc123'
+Usuario.create! email: 'admin@mail.com', rol: rol, password: 'abc123', name: ' '
 
 tipo_mezcal = TipoMezcal.create nombre: 'Minero'
 

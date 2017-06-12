@@ -3,7 +3,8 @@ lock '3.4.0'
 
 set :application, 'mezcalaria'
 set :scm, "git"
-set :repo_url, "git@github.com:LogicalBricks/mezcalaria-backend.git"
+#set :repo_url, "git@github.com:LogicalBricks/mezcalaria-backend.git"
+set :repo_url, "git@github.com:DanielArenas/mezcalaria-backend.git"
 set :deploy_to, "/home/deployer/apps/#{fetch(:application)}"
 
 set :bundle_binstubs, nil

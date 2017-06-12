@@ -49,7 +49,7 @@ gem 'jquery-datatables', '1.10.15'
 gem 'haml-rails'
 gem 'simple_form', '3.1.0.rc2'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', '2.13.3'
 
 group :development, :test do
   gem 'rspec-rails'
