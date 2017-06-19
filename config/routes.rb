@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'ingresar', to: 'sesiones#destroy', as: :logout
 
   resources :news
+  resources :users
   resources :events
   resources :sponsores
   resources :sesiones

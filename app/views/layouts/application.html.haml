@@ -29,6 +29,8 @@
               = link_to 'Eventos', events_path
             %li{ class: controller_name == 'news' ? 'active' : '' }
               = link_to 'Noticias', news_index_path
+            %li{ class: controller_name == 'users' ? 'active' : '' }
+              = link_to 'Usuarios', users_path
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 Catálogos
