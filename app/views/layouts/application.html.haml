@@ -6,60 +6,62 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .navbar.navbar-default.navbar-static-top{:role => "navigation"}
-      .container
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          = link_to 'Mezcalaria', root_path, class: 'navbar-brand'
-        .navbar-collapse.collapse
-          %ul.nav.navbar-nav
-            %li{ class: controller_name == 'mezcales' ? 'active' : '' }
-              = link_to 'Mezcales', mezcales_path
-            %li{ class: controller_name == 'magueyes' ? 'active' : '' }
-              = link_to 'Magueyes', magueyes_path          
-            %li{ class: controller_name == 'marcas' ? 'active' : '' }
-              = link_to 'Marcas', marcas_path
-            %li{ class: controller_name == 'sponsores' ? 'active' : '' }
-              = link_to 'Patrocinadores', sponsores_path
-            %li{ class: controller_name == 'events' ? 'active' : '' }
-              = link_to 'Eventos', events_path
-            %li{ class: controller_name == 'news' ? 'active' : '' }
-              = link_to 'Noticias', news_index_path
-            %li{ class: controller_name == 'users' ? 'active' : '' }
-              = link_to 'Usuarios', users_path
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Catálogos
-                %span.caret
-              %ul.dropdown-menu{:role => "menu"}
+    - if current_user
+      .navbar.navbar-default.navbar-static-top{:role => "navigation"}
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to 'Mezcalaria', root_path, class: 'navbar-brand'
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li{ class: controller_name == 'mezcales' ? 'active' : '' }
+                = link_to 'Mezcales', mezcales_path
+              %li{ class: controller_name == 'magueyes' ? 'active' : '' }
+                = link_to 'Magueyes', magueyes_path          
+              %li{ class: controller_name == 'marcas' ? 'active' : '' }
+                = link_to 'Marcas', marcas_path
+              %li{ class: controller_name == 'sponsores' ? 'active' : '' }
+                = link_to 'Patrocinadores', sponsores_path
+              %li{ class: controller_name == 'events' ? 'active' : '' }
+                = link_to 'Eventos', events_path
+              %li{ class: controller_name == 'news' ? 'active' : '' }
+                = link_to 'Noticias', news_index_path
+              %li{ class: controller_name == 'users' ? 'active' : '' }
+                = link_to 'Usuarios', users_path
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Catálogos
+                  %span.caret
+                %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    = link_to 'Tipos de mezcal', tipo_mezcales_path
+                  %li
+                    = link_to 'Tipos de maguey', tipo_magueyes_path
+                  %li
+                    = link_to 'Tipos de destilado', tipo_destilados_path
+                  %li.divider
+                  %li.dropdown-header Información geográfica
+                  %li
+                    = link_to 'Regiones', regiones_path
+                  %li
+                    = link_to 'Municipios', municipios_path
+                  %li
+                    = link_to 'Zonas de Producción', zona_producciones_path
+            %ul.nav.navbar-nav.navbar-right
+              - if current_user
+                %li.navbar-text
+                  = usuario_actual
                 %li
-                  = link_to 'Tipos de mezcal', tipo_mezcales_path
+                  = link_to logout_path, method: :delete do
+                    = icon 'power-off', 'Salir'
+              - else
                 %li
-                  = link_to 'Tipos de maguey', tipo_magueyes_path
-                %li
-                  = link_to 'Tipos de destilado', tipo_destilados_path
-                %li.divider
-                %li.dropdown-header Información geográfica
-                %li
-                  = link_to 'Regiones', regiones_path
-                %li
-                  = link_to 'Municipios', municipios_path
-                %li
-                  = link_to 'Zonas de Producción', zona_producciones_path
-          %ul.nav.navbar-nav.navbar-right
-            - if current_user
-              %li.navbar-text
-                = usuario_actual
-              %li
-                = link_to logout_path, method: :delete do
-                  = icon 'power-off', 'Salir'
-            - else
-              %li
-                = link_to "Ingresar", login_path
+                  = link_to "Ingresar", login_path
+
     .container
       .row
         .span12

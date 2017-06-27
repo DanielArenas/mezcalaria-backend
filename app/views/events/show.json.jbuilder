@@ -1,3 +1,3 @@
-json.extract! @event, :id, :name, :place, :date_event, :baner, :is_free, :created_at, :updated_at
+json.extract! @event, :id, :name, :place, :date_event, :baner, :is_free, :start_time, :end_time
 
 json.baner @event.baner.url(:thumb)

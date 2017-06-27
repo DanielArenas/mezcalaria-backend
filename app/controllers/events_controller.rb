@@ -8,9 +8,9 @@ class EventsController < ApplicationController
   def index
     if params[:lan]
       lan = params[:lan] == "es" ? 1 : 2;
-      @events = Event.where(language: lan)
+      @events = Event.where("language= ? AND date_event > ?", lan, (Time.now + 1.day)).order(date_event: :desc)
     else
-      @events = Event.all
+      @events = Event.all.order(date_event: :desc)
     end
   end
 
@@ -76,6 +76,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :place, :date_event, :baner, :is_free, :language)
+      params.require(:event).permit(:name, :place, :date_event, :baner, :is_free, :language, :start_time, :end_time)
     end
 end
