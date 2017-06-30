@@ -11,6 +11,12 @@ module Api
 
     # GET /users/1
     def show
+
+      if @user
+        render json: @user, status: 200
+      else
+        render text: "Unidentified user", status: 422
+      end
     end
 
     # GET /users/new
@@ -32,11 +38,11 @@ module Api
       @user = Usuario.new(user_params)
       @user.rol_id = 2
 
-        if @user.save
-          render text: @user.access_token, status: 201
-        else
-          render json: @user.errors, status: 422
-        end
+      if @user.save
+        render text: @user.access_token, status: 201
+      else
+        render json: @user.errors, status: 422
+      end
     end
 
     # PATCH/PUT /users/1

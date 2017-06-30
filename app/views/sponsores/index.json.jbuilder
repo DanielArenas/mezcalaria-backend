@@ -1,5 +1,5 @@
 json.array!(@sponsores) do |sponsor|
-  json.extract! sponsor, :id, :name, :address, :email, :web_page, :description, :logo_sponsor, :outstanding
+  json.extract! sponsor, :id, :name, :address, :email, :web_page, :description, :logo_sponsor, :outstanding, :phone
 
   json.logo_sponsor sponsor.logo_sponsor.url(:thumb)
 
