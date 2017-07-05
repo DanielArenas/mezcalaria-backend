@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630020011) do
+ActiveRecord::Schema.define(version: 20170705021939) do
 
   create_table "estados", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -98,6 +98,41 @@ ActiveRecord::Schema.define(version: 20170630020011) do
     t.string   "photo",       limit: 255
   end
 
+  create_table "rails_push_notifications_apns_apps", force: :cascade do |t|
+    t.text     "apns_dev_cert",  limit: 65535
+    t.text     "apns_prod_cert", limit: 65535
+    t.boolean  "sandbox_mode",   limit: 1
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "rails_push_notifications_gcm_apps", force: :cascade do |t|
+    t.string   "gcm_key",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "rails_push_notifications_mpns_apps", force: :cascade do |t|
+    t.text     "cert",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "rails_push_notifications_notifications", force: :cascade do |t|
+    t.text     "destinations", limit: 65535
+    t.integer  "app_id",       limit: 4
+    t.string   "app_type",     limit: 255
+    t.text     "data",         limit: 65535
+    t.text     "results",      limit: 65535
+    t.integer  "success",      limit: 4
+    t.integer  "failed",       limit: 4
+    t.boolean  "sent",         limit: 1,     default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "rails_push_notifications_notifications", ["app_id", "app_type", "sent"], name: "app_and_sent_index_on_rails_push_notifications", using: :btree
+
   create_table "regiones", force: :cascade do |t|
     t.string   "nombre",     limit: 255
     t.integer  "estado_id",  limit: 4
@@ -154,7 +189,9 @@ ActiveRecord::Schema.define(version: 20170630020011) do
     t.string   "access_token",    limit: 255
     t.string   "idiom",           limit: 255
     t.string   "name",            limit: 255
-    t.integer  "language",        limit: 4,   default: 1
+    t.integer  "language",        limit: 4,     default: 1
+    t.text     "device_id",       limit: 65535
+    t.string   "type_device",     limit: 255
   end
 
   add_index "usuarios", ["rol_id"], name: "index_usuarios_on_rol_id", using: :btree

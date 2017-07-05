@@ -10,6 +10,7 @@
       %th Nombre
       %th email
       %th fecha de registro
+      %th os
       %th Language
   %tbody
     - @users.each do |user|
@@ -17,6 +18,7 @@
         %td= user.name
         %td= user.email
         %td= user.created_at
+        %td= user.type_device
         %td= user.get_language 
 
 %br

@@ -33,6 +33,27 @@ class NewsController < ApplicationController
   def create
     @news = News.new(news_params)
 
+    app = RailsPushNotifications::GCMApp.new
+    app.gcm_key = '933875724615'
+    app.save
+
+    begin
+      #send notification to user android
+      notif = app.notifications.build(
+        destinations: Usuario.where(type_device: 'android').pluck(:device_id),
+        data: { text: @news.tittle }
+      )
+
+      if notif.save
+        app.push_notifications
+        notif.reload
+      end
+    rescue => ex
+      puts " Error in notification "
+      puts ex.message
+      puts " *** --- *** --- *** "
+    end
+
     respond_to do |format|
       if @news.save
         format.html { redirect_to @news, notice: 'News was successfully created.' }

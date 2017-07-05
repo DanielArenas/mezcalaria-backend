@@ -1,8 +1,15 @@
 module Api
   class UsersController < ApplicationController
     
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :authorize_user_or_api, only: [:set_token]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :set_token]
 
+
+    def set_token
+      @user.device_id = params[:token][:token]
+      @user.type_device = params[:token][:os]
+      render json: @user.save, status: 200
+    end
 
     # GET /users
     def index
@@ -11,7 +18,6 @@ module Api
 
     # GET /users/1
     def show
-
       if @user
         render json: @user, status: 200
       else
