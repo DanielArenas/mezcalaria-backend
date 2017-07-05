@@ -34,7 +34,7 @@ class NewsController < ApplicationController
     @news = News.new(news_params)
 
     app = RailsPushNotifications::GCMApp.new
-    app.gcm_key = '933875724615'
+    app.gcm_key = 'AIzaSyB7qnkDzGVRZPlhlJGTf0-QDajhK5beaek'
     app.save
 
     begin
