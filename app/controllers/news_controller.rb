@@ -33,11 +33,12 @@ class NewsController < ApplicationController
   def create
     @news = News.new(news_params)
 
-    app = RailsPushNotifications::GCMApp.new
-    app.gcm_key = 'AIzaSyB7qnkDzGVRZPlhlJGTf0-QDajhK5beaek'
-    app.save
-
     begin
+
+      app = RailsPushNotifications::GCMApp.new
+      app.gcm_key = 'AIzaSyB7qnkDzGVRZPlhlJGTf0-QDajhK5beaek'
+      app.save
+      
       #send notification to user android
       notif = app.notifications.build(
         destinations: Usuario.where(type_device: 'android').pluck(:device_id),
