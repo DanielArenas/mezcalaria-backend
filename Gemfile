@@ -52,6 +52,7 @@ gem 'carrierwave'
 gem 'rmagick', '2.13.3'
 
 gem 'rails-push-notifications'
+gem 'ruby-push-notifications'
 
 group :development, :test do
   gem 'rspec-rails'
