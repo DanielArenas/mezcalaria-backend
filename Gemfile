@@ -51,8 +51,8 @@ gem 'simple_form', '3.1.0.rc2'
 gem 'carrierwave'
 gem 'rmagick', '2.13.3'
 
-gem 'rails-push-notifications'
-gem 'ruby-push-notifications'
+# gem 'rails-push-notifications', '0.2.2'
+# gem 'ruby-push-notifications', '0.4.0'
 
 group :development, :test do
   gem 'rspec-rails'
