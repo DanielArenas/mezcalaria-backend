@@ -35,23 +35,25 @@ class NewsController < ApplicationController
 
     begin
 
-      app = Rpush::Gcm::App.new
-      app.name = "android_app"
-      app.auth_key = "AIzaSyB7qnkDzGVRZPlhlJGTf0-QDajhK5beaek"
-      app.connections = 1
-      app.save!
+      app = RailsPushNotifications::GCMApp.new
+      app.gcm_key = 'AIzaSyB7qnkDzGVRZPlhlJGTf0-QDajhK5beaek'
+      app.save
 
-      n = Rpush::Gcm::Notification.new
-      n.app = Rpush::Gcm::App.find_by_name("android_app")
-      n.registration_ids = Usuario.where(type_device: 'android').pluck(:device_id)
-      n.data = { message: @news.tittle }
-      n.priority = 'normal'        # Optional, can be either 'normal' or 'high'
-      n.content_available = true # Optional
-      n.notification = { body: 'great match!',
-                         title: 'Portugal vs. Denmark'
-                       }
-      puts " ** Save notification ** "
-      puts n.save!
+      if app.save
+        notif = app.notifications.build(
+          destinations: Usuario.where(type_device: 'android').pluck(:device_id),
+          data: { text: @news.tittle }
+        )
+
+        if notif.save
+          app.push_notifications
+          notif.reload
+        else
+          puts " ** Notifi save ** "
+        end
+      else
+        puts " Error in save app "
+      end
 
     rescue => ex
       puts " Error in notification "
