@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705021939) do
+ActiveRecord::Schema.define(version: 20170706000224) do
 
   create_table "estados", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -147,6 +147,67 @@ ActiveRecord::Schema.define(version: 20170705021939) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "rpush_apps", force: :cascade do |t|
+    t.string   "name",                    limit: 255,               null: false
+    t.string   "environment",             limit: 255
+    t.text     "certificate",             limit: 65535
+    t.string   "password",                limit: 255
+    t.integer  "connections",             limit: 4,     default: 1, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type",                    limit: 255,               null: false
+    t.string   "auth_key",                limit: 255
+    t.string   "client_id",               limit: 255
+    t.string   "client_secret",           limit: 255
+    t.string   "access_token",            limit: 255
+    t.datetime "access_token_expiration"
+  end
+
+  create_table "rpush_feedback", force: :cascade do |t|
+    t.string   "device_token", limit: 64, null: false
+    t.datetime "failed_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "app_id",       limit: 4
+  end
+
+  add_index "rpush_feedback", ["device_token"], name: "index_rpush_feedback_on_device_token", using: :btree
+
+  create_table "rpush_notifications", force: :cascade do |t|
+    t.integer  "badge",             limit: 4
+    t.string   "device_token",      limit: 64
+    t.string   "sound",             limit: 255,      default: "default"
+    t.text     "alert",             limit: 65535
+    t.text     "data",              limit: 65535
+    t.integer  "expiry",            limit: 4,        default: 86400
+    t.boolean  "delivered",         limit: 1,        default: false,     null: false
+    t.datetime "delivered_at"
+    t.boolean  "failed",            limit: 1,        default: false,     null: false
+    t.datetime "failed_at"
+    t.integer  "error_code",        limit: 4
+    t.text     "error_description", limit: 65535
+    t.datetime "deliver_after"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "alert_is_json",     limit: 1,        default: false
+    t.string   "type",              limit: 255,                          null: false
+    t.string   "collapse_key",      limit: 255
+    t.boolean  "delay_while_idle",  limit: 1,        default: false,     null: false
+    t.text     "registration_ids",  limit: 16777215
+    t.integer  "app_id",            limit: 4,                            null: false
+    t.integer  "retries",           limit: 4,        default: 0
+    t.string   "uri",               limit: 255
+    t.datetime "fail_after"
+    t.boolean  "processing",        limit: 1,        default: false,     null: false
+    t.integer  "priority",          limit: 4
+    t.text     "url_args",          limit: 65535
+    t.string   "category",          limit: 255
+    t.boolean  "content_available", limit: 1,        default: false
+    t.text     "notification",      limit: 65535
+  end
+
+  add_index "rpush_notifications", ["delivered", "failed"], name: "index_rpush_notifications_multi", using: :btree
 
   create_table "sponsores", force: :cascade do |t|
     t.string   "name",         limit: 255
