@@ -41,8 +41,8 @@ class NewsController < ApplicationController
 
       if app.save
         notif = app.notifications.build(
-          destinations: Usuario.where(type_device: 'android').pluck(:device_id),
-          data: { text: @news.tittle }
+          destinations: Usuario.where(type_device: 'android', language: @news.language).pluck(:device_id),
+          data: { text: @news.tittle, message: @news.title, title: "Nueva Noticia" }
         )
 
         if notif.save
