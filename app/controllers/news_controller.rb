@@ -33,6 +33,27 @@ class NewsController < ApplicationController
   def create
     @news = News.new(news_params)
 
+
+    android_users = Usuario.where(type_device: 'android', language: @news.language).pluck(:device_id)
+    ios_users = Usuario.where(type_device: 'ios', language: @news.language).pluck(:device_id)
+
+    send_android(android_users, @news.tittle)
+    send_ios(ios_users, @news.tittle)
+
+
+    respond_to do |format|
+      if @news.save
+        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        format.json { render :show, status: :created, location: @news }
+      else
+        format.html { render :new }
+        format.json { render json: @news.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def send_android(users, msg)
     begin
 
       app = RailsPushNotifications::GCMApp.new
@@ -41,8 +62,8 @@ class NewsController < ApplicationController
 
       if app.save
         notif = app.notifications.build(
-          destinations: Usuario.where(type_device: 'android', language: @news.language).pluck(:device_id),
-          data: { text: @news.tittle, message: @news.tittle, title: @news.tittle }
+          destinations: users,
+          data: { text: msg, message: msg, title: msg }
         )
 
         if notif.save
@@ -59,18 +80,45 @@ class NewsController < ApplicationController
       puts " Error in notification "
       puts ex.message
       puts " *** --- *** --- *** "
-    end
-
-    respond_to do |format|
-      if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @news }
-      else
-        format.html { render :new }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    end
+    end    
   end
+
+
+  def send_ios(users, msg)
+
+    file = File.expand_path('../../../config/certificado/cert.pem',  __FILE__)
+    cert = File.open(file, "rb")
+    contents = cert.read    
+
+    begin
+
+      app = RailsPushNotifications::APNSApp.new
+      app.apns_dev_cert = contents
+      app.apns_prod_cert = contents
+      app.sandbox_mode = true
+
+      if app.save
+        notif = app.notifications.build(
+          destinations: users,
+          data: { aps: { alert: msg, sound: 'true', badge: 1 } }
+        )
+        if notif.save
+          app.push_notifications
+          notif.reload
+        else
+          puts " ** Notifi save ** "
+        end
+      else
+        puts " Error in save app "
+      end
+
+    rescue => ex
+      puts " Error in notification "
+      puts ex.message
+      puts " *** --- *** --- *** "
+    end    
+  end
+
 
   # PATCH/PUT /news/1
   # PATCH/PUT /news/1.json
