@@ -137,6 +137,7 @@ class NewsController < ApplicationController
   # DELETE /news/1
   # DELETE /news/1.json
   def destroy
+    @news.remove_video!
     @news.destroy
     respond_to do |format|
       format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
