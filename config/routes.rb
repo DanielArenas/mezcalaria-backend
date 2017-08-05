@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   resources :tipo_destilados
   resources :tipo_magueyes
 
-  root 'mezcales#index'
-  #root 'public#index'
+  # root 'mezcales#index'
+  root 'public#index'
 
   #For movile app
   namespace :api do
