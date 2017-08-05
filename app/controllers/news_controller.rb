@@ -95,7 +95,7 @@ class NewsController < ApplicationController
       app = RailsPushNotifications::APNSApp.new
       app.apns_dev_cert = contents
       app.apns_prod_cert = contents
-      app.sandbox_mode = true
+      app.sandbox_mode = Rails.env == 'production' ? false : true
 
       if app.save
         notif = app.notifications.build(
