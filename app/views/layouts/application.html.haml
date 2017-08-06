@@ -5,6 +5,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    
+    %meta{:name => "keywords", :content => "Mezcalaria, mezcales, agaves"}
+    %meta{:name => "description", :content => "Mezcalaria es una guía práctica y útil para que conozcas mediante gráficos y fotografías la manera en que se elaboran los mezcales artesanales, así como cada uno de los agaves silvestres y cultivados que se utilizan para su destilación. Se ha hecho especial énfasis a los agaves y mezcales oaxaqueños dada su gran diversidad. Asimismo te aconsejamos cómo degustar esta bebida que está conquistando el mundo. Toda la información fue proporcionada por el maestro Ulises Torrentera autor del libro Mezcalaria, cultura del mezcal."}
+
   %body
     - if current_user
       .navbar.navbar-default.navbar-static-top{:role => "navigation"}
